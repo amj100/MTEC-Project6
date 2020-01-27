@@ -10,5 +10,9 @@ html
 			include includes/header.pug
 			section
 				div(class="panel")
-					a(class="box" href="/users") User Listing
-					a(class="box" href="/create_user") Create User
+					form(method="post", action="/create_user")
+						input(type="text", id="id", name="id" placeholder="ID")
+						input(type="text", id="name", name="name" placeholder="Name")
+						input(type="email", id="email", name="email" placeholder="Email")
+						input(type="number", id="age", name="age" placeholder="Age")
+						input(type="submit", value="Create User")
