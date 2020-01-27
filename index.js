@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const fs = require("fs")
 const port = process.env.PORT || 3000
 
 const app = express()
@@ -11,33 +12,16 @@ app.get("/", (req, res) => {
 	res.redirect("/users")
 })
 app.get("/users", (req, res) => {
-	res.render("users", {
-		list: [
-			{
-				id: "the id",
-				name: "the name",
-				email: "the email",
-				age: 100
-			},
-			{
-				id: "the id",
-				name: "the name",
-				email: "the email",
-				age: 90
-			},
-			{
-				id: "the id",
-				name: "the name",
-				email: "the email",
-				age: 100
-			},
-			{
-				id: "the id",
-				name: "the name",
-				email: "the email",
-				age: 100
-			},
-		]
+	let list = []
+	fs.readFile(path.join(__dirname, "users.json"), 'utf8', function (err, data) {
+		if (err) throw err
+		try {
+			list = JSON.parse(data)
+		}
+		catch(e) {
+			list = {}
+		}
+		res.render("users", {list: list})
 	})
 })
 app.get("/create_user", (req, res) => {
