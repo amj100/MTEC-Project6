@@ -51,6 +51,26 @@ app.post("/create_user", async (req, res) => {
 	}
 	res.redirect("/users")
 })
+app.get("/edit_user/:id", async (req, res) => {
+	let id = req.params.id
+	let name = ""
+	let email = ""
+	let age = ""
+	try {
+		let data = await fs.readFile(path.join(__dirname, "users.json"), "utf8")
+		let list = JSON.parse(data)
+		if (list[id]) {
+			id = list[id].id
+			name = list[id].name
+			email = list[id].email
+			age = list[id].age
+		}
+	}
+	catch(e) {
+		list = {}
+	}
+	res.render("edit_user", {id: id, name: name, email: email, age: age})
+})
 
 app.use(async (req, res) => {
 	res.redirect("/")
