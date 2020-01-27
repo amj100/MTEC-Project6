@@ -1,6 +1,10 @@
 html
 	head
-		title= title
+		title Home
+		include includes/head.pug
 	body
-		h1(class="myClass", id="myId")= message
-		h2.myClass.mySecondClass#myId This is a header2 #{partialVariable}
+		main
+			include includes/header.pug
+			section
+				h1(class="myClass", id="myId")= message
+				h2.myClass.mySecondClass#myId This is a header2 #{partialVariable}
