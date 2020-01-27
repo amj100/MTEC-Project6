@@ -97,6 +97,22 @@ app.post("/edit_user/:id", async (req, res) => {
 	}
 	res.redirect("/users")
 })
+app.post("/delete_user/:id", async (req,res) => {
+	let id = req.params.id
+	let list = {}
+	try {
+		let data = await fs.readFile(path.join(__dirname, "users.json"), "utf8")
+		list = JSON.parse(data)
+		if (id && list[id]) {
+			delete list[id]
+		}
+		await fs.writeFile(path.join(__dirname, "users.json"), JSON.stringify(list), "utf8")
+	}
+	catch(e) {
+		list = {}
+	}
+	res.redirect("/users")
+})
 
 app.use(async (req, res) => {
 	res.redirect("/")
