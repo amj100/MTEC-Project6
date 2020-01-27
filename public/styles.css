@@ -100,7 +100,7 @@ div.user-box .info {
 	flex-wrap: wrap;
 	width: 60%;
 	overflow: hidden;
-	background-color: #eee;
+	background-color: transparent;
 	border: solid #333 1px;
 	border-radius: 3px;
 	padding: 6px;
@@ -118,7 +118,7 @@ div.user-box .buttons {
 	display: flex;
 	width: 40%;
 }
-div.user-box .buttons a {
+div.user-box .buttons a, div.user-box .buttons button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -134,7 +134,10 @@ div.user-box .buttons a {
 	box-shadow: 0 6px 24px -18px #333;
 	transition: color 0.1s;
 }
-div.user-box .buttons a:hover {
+div.user-box .buttons button {
+	height: 100%;
+}
+div.user-box .buttons a:hover, div.user-box .buttons button:hover {
 	cursor: pointer;
 	color: #999;
 	transition: color 0.1s;

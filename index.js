@@ -28,7 +28,7 @@ app.get("/create_user", async (req, res) => {
 	res.render("create_user")
 })
 app.post("/create_user", async (req, res) => {
-	let id = req.body.id
+	let id = String(req.body.id).replace(/[^A-Z0-9-_$]/ig, '')
 	let name = req.body.name
 	let email = req.body.email
 	let age = req.body.age
@@ -36,7 +36,7 @@ app.post("/create_user", async (req, res) => {
 	try {
 		let data = await fs.readFile(path.join(__dirname, "users.json"), "utf8")
 		list = JSON.parse(data)
-		if (id && name && email && age && !list[id]) {
+		if (id && name && email && age && !list[id] && id !== "") {
 			list[id] = {
 				id: id,
 				name: name,
@@ -71,8 +71,9 @@ app.get("/edit_user/:id", async (req, res) => {
 	}
 	res.render("edit_user", {id: id, name: name, email: email, age: age})
 })
-app.post("/edit_user", async (req, res) => {
-	let id = req.body.id
+app.post("/edit_user/:id", async (req, res) => {
+	let oldId = req.params.id
+	let id = String(req.body.id).replace(/[^A-Z0-9-_$]/ig, '')
 	let name = req.body.name
 	let email = req.body.email
 	let age = req.body.age
@@ -80,7 +81,8 @@ app.post("/edit_user", async (req, res) => {
 	try {
 		let data = await fs.readFile(path.join(__dirname, "users.json"), "utf8")
 		list = JSON.parse(data)
-		if (id && name && email && age && list[id]) {
+		if (id && name && email && age && list[oldId] && id !== "") {
+			delete list[oldId]
 			list[id] = {
 				id: id,
 				name: name,

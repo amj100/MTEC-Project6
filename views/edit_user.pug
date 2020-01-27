@@ -10,7 +10,7 @@ html
 			include includes/header.pug
 			section
 				div(class="panel")
-					form(method="post", action="/edit_user")
+					form(method="post", action=`/edit_user/${id}`)
 						input(required type="text", id="id", name="id" placeholder="ID" value=id)
 						input(required type="text", id="name", name="name" placeholder="Name" value=name)
 						input(required type="email", id="email", name="email" placeholder="Email" value=email)

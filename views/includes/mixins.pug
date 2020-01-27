@@ -1,5 +1,3 @@
-
-
 mixin users(list)
 	each user in list
 		div(class="user-box")
@@ -10,4 +8,5 @@ mixin users(list)
 				p= "Age: " + user.age
 			div(class="buttons")
 				a(href=`/edit_user/${user.id}`) Edit
-				a(onclick="") Delete
+				form(method="post", action=`/delete_user/${user.id}`)
+					button(type="submit") Delete
