@@ -8,8 +8,49 @@ app.set("view engine", "pug")
 app.use(express.static(path.join(__dirname, "public")))
 
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname+'/styles.css'))
-	res.render("index", {title: "test", message: "a message", partialVariable: "[this is a partial variable]"})
+	res.redirect("/users")
+})
+app.get("/users", (req, res) => {
+	res.render("users", {
+		list: [
+			{
+				id: "the id",
+				name: "the name",
+				email: "the email",
+				age: 100
+			},
+			{
+				id: "the id",
+				name: "the name",
+				email: "the email",
+				age: 90
+			},
+			{
+				id: "the id",
+				name: "the name",
+				email: "the email",
+				age: 100
+			},
+			{
+				id: "the id",
+				name: "the name",
+				email: "the email",
+				age: 100
+			},
+		]
+	})
+})
+app.get("/create_user", (req, res) => {
+	res.render("create_user")
+})
+/*
+app.get("/edit_user", (req, res) => {
+	res.render("edit_user")
+})
+*/
+
+app.use((req, res) => {
+	res.redirect("/")
 })
 
 app.listen(port, () => {

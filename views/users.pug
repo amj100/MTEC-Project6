@@ -3,12 +3,12 @@ include includes/mixins.pug
 doctype html
 html
 	head
-		title Home
+		title Users
 		include includes/head.pug
 	body
 		main
 			include includes/header.pug
 			section
 				div(class="panel")
-					a(class="box" href="/users") User Listing
-					a(class="box" href="/create_user") Create User
+					a(class="create_user" href="/create_user") Create User
+					+users(list)

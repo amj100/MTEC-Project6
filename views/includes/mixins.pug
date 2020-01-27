@@ -1,0 +1,11 @@
+mixin users(list)
+	each user in list
+		div(class="user-box")
+			div(class="info")
+				p= "ID: " + user.id
+				p= "Name: " + user.name
+				p= "Email: " + user.email
+				p= "Age: " + user.age
+			div(class="buttons")
+				button Edit
+				button Delete
