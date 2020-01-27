@@ -118,9 +118,12 @@ div.user-box .buttons {
 	display: flex;
 	width: 40%;
 }
-div.user-box .buttons button {
+div.user-box .buttons a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
 	width: 100%;
-	height: 100%;
 	background-color: #333;
 	border: none;
 	font-size: 14px;
@@ -131,7 +134,7 @@ div.user-box .buttons button {
 	box-shadow: 0 6px 24px -18px #333;
 	transition: color 0.1s;
 }
-div.user-box .buttons button:hover {
+div.user-box .buttons a:hover {
 	cursor: pointer;
 	color: #999;
 	transition: color 0.1s;
